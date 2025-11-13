@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiating Protocol: NIKOLOZ</title>
+    <style>
+        /* Base Styling */
+        body {
+            background-color: #0d1117; /* GitHub Dark Mode Black */
+            color: #28a745; /* GitHub Green */
+            font-family: 'Consolas', 'Courier New', monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        /* Hacking Screen Styling */
+        #hacking-screen {
+            font-size: 1.2em;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+            white-space: pre-wrap;
+            line-height: 1.4;
+            display: block;
+        }
+
+        /* Cursor blinking effect */
+        .cursor {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { color: transparent }
+            50% { color: #28a745 }
+        }
+
+        /* Photo Frame Styling */
+        #photo-frame {
+            display: none; /* Hidden until the "hacking" is complete */
+            background-color: #ffffff; /* White matting */
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(40, 167, 69, 0.5), 0 0 20px rgba(40, 167, 69, 0.8) inset; /* Green glow effect */
+            border-radius: 10px;
+            max-width: 500px;
+            text-align: center;
+            animation: fadeInFrame 1s ease-out forwards;
+        }
+
+        .photo-container {
+            border: 5px solid #5D4037; /* Deep Mocha border for a sophisticated look */
+            overflow: hidden;
+            width: 100%;
+            height: auto;
+        }
+
+        #nikoloz-photo {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .frame-message {
+            margin-top: 20px;
+            color: #333;
+            font-family: 'Playfair Display', serif; /* Use an elegant font for the final message */
+            font-size: 1.5em;
+        }
+        
+        .frame-message h2 {
+            margin: 0;
+            color: #5D4037;
+        }
+
+        /* Frame fade-in animation */
+        @keyframes fadeInFrame {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="hacking-screen">
+        <span id="output"></span><span class="cursor">_</span>
+    </div>
+
+    <div id="photo-frame">
+        <div class="photo-container">
+            <img id="nikoloz-photo" src="https://scontent.ftbs10-1.fna.fbcdn.net/v/t39.30808-6/581230509_3887893438179082_8424124270546181882_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=clYQFEWuXMoQ7kNvwHTg6Kb&_nc_oc=Admh5WYoI2LiosgIkbxUxeih-94RC8gStaqUJLK8HcZOY37hOCxR1G9_PezO5hJQ29A&_nc_zt=23&_nc_ht=scontent.ftbs10-1.fna&_nc_gid=yKMa4046rL-p5B7JWt4O-A&oh=00_AfhvGR940rwduMxVVJn-0txGRTsFZTUV2q8oPvZOAkuI3Q&oe=691C1435" alt="Nikoloz Birthday Photo">
+        </div>
+        <div class="frame-message">
+            <h2>Access Granted. Happy Birthday, Agent Nikoloz!</h2>
+        </div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        const hackingScreen = document.getElementById('hacking-screen');
+        const photoFrame = document.getElementById('photo-frame');
+        
+        // The sequence of "hacking" messages
+        const messages = [
+            "[INITIATING] Operation B-DAY Protocol v7.0...",
+            "[SCANNING] Target: Nikoloz_MasterFile_DOB.dat...",
+            "[STATUS] Firewalls compromised. Accessing main satellite link...",
+            "[CONNECTING] to NASA Chronos Server. Authentication required...",
+            "[BYPASSING] Security level Gamma-9...",
+            "[ALERT] Unauthorized intrusion detected by SpaceX Starlink Net...",
+            "[INTERCEPTING] Personal communication from Elon Musk...",
+            "[TRANSLATING] Encrypted message: 'Happy Birthday, Nikoloz, you brilliant mind!'",
+            "[FINALIZING] Biometric authorization through friend-level recognition...",
+            "[SUCCESS] Accessing designated private memory slot...",
+            " " // Final blank line before the reveal
+        ];
+        
+        let messageIndex = 0;
+        let charIndex = 0;
+        const speed = 40; // Typing speed (milliseconds per character)
+        const delayBetweenMessages = 1500; // Delay between full lines (milliseconds)
+
+        function typeWriter() {
+            if (messageIndex < messages.length) {
+                const currentMessage = messages[messageIndex];
+                
+                if (charIndex < currentMessage.length) {
+                    // Type one character
+                    output.textContent += currentMessage.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    // Line complete, add newline and start delay
+                    output.textContent += '\n'; 
+                    messageIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, delayBetweenMessages);
+                }
+            } else {
+                // All messages are done
+                revealPhoto();
+            }
+        }
+
+        function revealPhoto() {
+            hackingScreen.style.display = 'none'; // Hide the terminal
+            photoFrame.style.display = 'block'; // Show the frame
+        }
+
+        // Start the simulation
+        typeWriter();
+    </script>
+
+</body>
+</html>
